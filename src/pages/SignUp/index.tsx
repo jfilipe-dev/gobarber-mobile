@@ -14,6 +14,8 @@ import * as Yup from 'yup';
 
 import { Form } from '@unform/mobile';
 import { FormHandles } from '@unform/core';
+
+import api from '../../services/api';
 import getValidationErros from '../../utils/getValidationErros';
 
 import Input from '../../components/Input';
@@ -38,41 +40,51 @@ const SignUp: React.FC = () => {
 
   const navigation = useNavigation();
 
-  const handleSignUp = useCallback(async (data: SignUpFormaData) => {
-    try {
-      formRef.current?.setErrors({});
+  const handleSignUp = useCallback(
+    async (data: SignUpFormaData) => {
+      try {
+        formRef.current?.setErrors({});
 
-      const schema = Yup.object().shape({
-        name: Yup.string().required('Nome obrigatório'),
-        email: Yup.string()
-          .required('E-mail obrigatório')
-          .email('Digite um e-mail válido'),
-        password: Yup.string().min(6, 'A senha deve ter no mínimo 6 dígitos'),
-      });
+        const schema = Yup.object().shape({
+          name: Yup.string().required('Nome obrigatório'),
+          email: Yup.string()
+            .required('E-mail obrigatório')
+            .email('Digite um e-mail válido'),
+          password: Yup.string().min(6, 'A senha deve ter no mínimo 6 dígitos'),
+        });
 
-      await schema.validate(data, {
-        abortEarly: false,
-      });
+        await schema.validate(data, {
+          abortEarly: false,
+        });
 
-      // await api.post('/users', data);
-    } catch (err) {
-      if (err instanceof Yup.ValidationError) {
-        const errors = getValidationErros(err);
-
-        formRef.current?.setErrors(errors);
+        await api.post('/users', data);
 
         Alert.alert(
-          `Erro no preenchimento.`,
-          `${Object.values(errors).map((error) => `\n${error}`)}.`,
+          'Cadastro realizado com sucesso!',
+          'Você já pode fazer login na aplicação.',
         );
-      } else {
-        Alert.alert(
-          'Erro no cadastro',
-          'Ocorreu um erro ao fazer o cadastro, tente novamente.',
-        );
+
+        navigation.navigate('SignIn');
+      } catch (err) {
+        if (err instanceof Yup.ValidationError) {
+          const errors = getValidationErros(err);
+
+          formRef.current?.setErrors(errors);
+
+          Alert.alert(
+            `Erro no preenchimento.`,
+            `${Object.values(errors).map((error) => `\n${error}`)}.`,
+          );
+        } else {
+          Alert.alert(
+            'Erro no cadastro',
+            'Ocorreu um erro ao fazer o cadastro, tente novamente.',
+          );
+        }
       }
-    }
-  }, []);
+    },
+    [navigation],
+  );
 
   return (
     <>
