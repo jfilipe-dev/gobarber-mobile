@@ -24,7 +24,14 @@ import Button from '../../components/Button';
 import logoImg from '../../assets/logo.png';
 
 import colors from '../../../styles/colors';
-import { Container, Title, BackToSignIn, BackToSignInText } from './styles';
+import {
+  Container,
+  Title,
+  BackToSignIn,
+  BackToSignInText,
+  ContentImg,
+  ContentForm,
+} from './styles';
 
 interface SignUpFormaData {
   name: string;
@@ -93,70 +100,71 @@ const SignUp: React.FC = () => {
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
         enabled
       >
-        <ScrollView
-          contentContainerStyle={{ flex: 1 }}
-          keyboardShouldPersistTaps="handled"
-        >
+        <ScrollView>
           <Container>
-            <Image source={logoImg} />
+            <ContentImg>
+              <Image source={logoImg} />
+            </ContentImg>
 
-            <View>
-              <Title>Crie sua conta</Title>
-            </View>
+            <ContentForm>
+              <View>
+                <Title>Crie sua conta</Title>
+              </View>
 
-            <Form ref={formRef} onSubmit={handleSignUp}>
-              <Input
-                autoCapitalize="words"
-                name="name"
-                icon="user"
-                placeholder="Nome"
-                returnKeyType="next"
-                onSubmitEditing={() => {
-                  emailInputRef.current?.focus();
-                }}
-              />
+              <Form ref={formRef} onSubmit={handleSignUp}>
+                <Input
+                  autoCapitalize="words"
+                  name="name"
+                  icon="user"
+                  placeholder="Nome"
+                  returnKeyType="next"
+                  onSubmitEditing={() => {
+                    emailInputRef.current?.focus();
+                  }}
+                />
 
-              <Input
-                ref={emailInputRef}
-                keyboardType="email-address"
-                autoCorrect={false}
-                autoCapitalize="none"
-                name="email"
-                icon="mail"
-                placeholder="E-mail"
-                returnKeyType="next"
-                onSubmitEditing={() => {
-                  passwordInputRef.current?.focus();
-                }}
-              />
+                <Input
+                  ref={emailInputRef}
+                  keyboardType="email-address"
+                  autoCorrect={false}
+                  autoCapitalize="none"
+                  name="email"
+                  icon="mail"
+                  placeholder="E-mail"
+                  returnKeyType="next"
+                  onSubmitEditing={() => {
+                    passwordInputRef.current?.focus();
+                  }}
+                />
 
-              <Input
-                ref={passwordInputRef}
-                secureTextEntry
-                name="password"
-                icon="lock"
-                placeholder="Senha"
-                textContentType="newPassword"
-                returnKeyType="send"
-                onSubmitEditing={() => {
-                  formRef.current?.submitForm();
-                }}
-              />
+                <Input
+                  ref={passwordInputRef}
+                  secureTextEntry
+                  name="password"
+                  icon="lock"
+                  placeholder="Senha"
+                  textContentType="newPassword"
+                  returnKeyType="send"
+                  onSubmitEditing={() => {
+                    formRef.current?.submitForm();
+                  }}
+                />
 
-              <Button
-                onPress={() => {
-                  formRef.current?.submitForm();
-                }}
-              >
-                Cadastrar
-              </Button>
-            </Form>
+                <Button
+                  onPress={() => {
+                    formRef.current?.submitForm();
+                  }}
+                >
+                  Cadastrar
+                </Button>
+              </Form>
+            </ContentForm>
           </Container>
         </ScrollView>
       </KeyboardAvoidingView>
 
       <BackToSignIn onPress={() => navigation.navigate('SignIn')}>
-        <Icon name="arrow-left" size={20} color={colors.color1} />
+        <Icon name="arrow-left" size={20} color={colors.color3} />
         <BackToSignInText>Voltar para o login</BackToSignInText>
       </BackToSignIn>
     </>

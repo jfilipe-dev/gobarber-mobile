@@ -14,7 +14,12 @@ const Routes: React.FC = () => {
   if (loading) {
     return (
       <View
-        style={{ flex: 1, justifyContent: 'center', alignContent: 'center' }}
+        style={{
+          flex: 1,
+          justifyContent: 'center',
+          alignContent: 'center',
+          backgroundColor: colors.background,
+        }}
       >
         <ActivityIndicator size="large" color={colors.color1} />
       </View>

@@ -74,13 +74,13 @@ const Input: React.RefForwardingComponent<InputRef, InputProps> = (
       <Icon
         name={icon}
         size={20}
-        color={isFocused || isFilled ? colors.color2 : colors.color4}
+        color={isFocused || isFilled ? colors.color2 : colors.color6}
       />
 
       <TextInput
         ref={inputElementRef}
         keyboardAppearance="dark"
-        placeholderTextColor={colors.color4}
+        placeholderTextColor={colors.color6}
         defaultValue={defaultValue}
         onFocus={handleInputFocus}
         onBlur={handleInputBlur}

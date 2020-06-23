@@ -12,7 +12,7 @@ import colors from '../styles/colors';
 const App: React.FC = () => {
   return (
     <NavigationContainer>
-      <StatusBar barStyle="light-content" backgroundColor={colors.background} />
+      <StatusBar barStyle="light-content" backgroundColor={colors.color1} />
       <AppProvider>
         <View style={{ flex: 1, backgroundColor: colors.background }}>
           <Routes />

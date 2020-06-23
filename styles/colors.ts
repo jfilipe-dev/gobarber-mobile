@@ -4,20 +4,24 @@ interface Colors {
   color2: string;
   color3: string;
   color4: string;
+  color5: string;
+  color6: string;
   info: string;
   error: string;
   success: string;
 }
 
 const colors: Colors = {
-  background: '#211A1D',
-  color1: '#EEEEEE',
-  color2: '#0E9843',
-  color3: '#160D0F',
-  color4: '#645E61',
+  background: '#F3F0F9',
+  color1: '#5646ab',
+  color2: '#ff991f',
+  color3: '#fff',
+  color4: '#bbb',
+  color5: '#6d7b92',
+  color6: '#ccc',
   info: '#6B7FD7',
-  error: '#DA4C44',
-  success: '#0E9843',
+  error: '#FE5F55',
+  success: '#2FBF71',
 };
 
 export default colors;

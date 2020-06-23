@@ -31,6 +31,8 @@ import {
   ForgotPasswordText,
   CreateAccountButton,
   CreateAccountButtonText,
+  ContentImg,
+  ContentForm,
 } from './styles';
 
 interface SignInFormData {
@@ -93,60 +95,61 @@ const SignIn: React.FC = () => {
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
         enabled
       >
-        <ScrollView
-          contentContainerStyle={{ flex: 1 }}
-          keyboardShouldPersistTaps="handled"
-        >
+        <ScrollView>
           <Container>
-            <Image source={logoImg} />
+            <ContentImg>
+              <Image source={logoImg} />
+            </ContentImg>
 
-            <View>
-              <Title>Faça seu Login</Title>
-            </View>
+            <ContentForm>
+              <View>
+                <Title>Faça seu Login</Title>
+              </View>
 
-            <Form ref={formRef} onSubmit={handleSigIn}>
-              <Input
-                autoCorrect={false}
-                autoCapitalize="none"
-                keyboardType="email-address"
-                name="email"
-                icon="mail"
-                placeholder="E-mail"
-                returnKeyType="next"
-                onSubmitEditing={() => {
-                  passwordInputRef.current?.focus();
-                }}
-              />
-              <Input
-                ref={passwordInputRef}
-                name="password"
-                icon="lock"
-                placeholder="Senha"
-                secureTextEntry
-                returnKeyType="send"
-                onSubmitEditing={() => {
-                  formRef.current?.submitForm();
-                }}
-              />
+              <Form ref={formRef} onSubmit={handleSigIn}>
+                <Input
+                  autoCorrect={false}
+                  autoCapitalize="none"
+                  keyboardType="email-address"
+                  name="email"
+                  icon="mail"
+                  placeholder="E-mail"
+                  returnKeyType="next"
+                  onSubmitEditing={() => {
+                    passwordInputRef.current?.focus();
+                  }}
+                />
+                <Input
+                  ref={passwordInputRef}
+                  name="password"
+                  icon="lock"
+                  placeholder="Senha"
+                  secureTextEntry
+                  returnKeyType="send"
+                  onSubmitEditing={() => {
+                    formRef.current?.submitForm();
+                  }}
+                />
 
-              <Button
-                onPress={() => {
-                  formRef.current?.submitForm();
-                }}
-              >
-                Entrar
-              </Button>
-            </Form>
+                <Button
+                  onPress={() => {
+                    formRef.current?.submitForm();
+                  }}
+                >
+                  Entrar
+                </Button>
+              </Form>
 
-            <ForgotPassword>
-              <ForgotPasswordText>Esqueci minha senha</ForgotPasswordText>
-            </ForgotPassword>
+              <ForgotPassword>
+                <ForgotPasswordText>Esqueci minha senha</ForgotPasswordText>
+              </ForgotPassword>
+            </ContentForm>
           </Container>
         </ScrollView>
       </KeyboardAvoidingView>
 
       <CreateAccountButton onPress={() => navigation.navigate('SignUp')}>
-        <Icon name="log-in" size={20} color={colors.color2} />
+        <Icon name="log-in" size={20} color={colors.color3} />
         <CreateAccountButtonText>Criar uma conta</CreateAccountButtonText>
       </CreateAccountButton>
     </>
