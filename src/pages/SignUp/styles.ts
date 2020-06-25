@@ -20,8 +20,6 @@ export const BackToSignIn = styled.TouchableOpacity`
   bottom: 0;
   right: 0;
   background: ${colors.color1};
-  border-top-width: 1px;
-  border-top-color: ${colors.color3};
   padding: 16px 0;
 
   justify-content: center;

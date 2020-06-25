@@ -4,6 +4,7 @@ import Icon from 'react-native-vector-icons/Feather';
 import { useRoute, useNavigation } from '@react-navigation/native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { format } from 'date-fns';
+import ptBR from 'date-fns/locale/pt-BR';
 
 import colors from '../../../styles/colors';
 
@@ -23,6 +24,7 @@ import {
   ProviderName,
   Calendar,
   Title,
+  SelectedDateFormatted,
   OpenDatePickerButton,
   OpenDatePickerButtonText,
   Schedule,
@@ -68,7 +70,7 @@ const CreateAppointment: React.FC = () => {
 
   // All hooks
   const { user } = useAuth();
-  const { goBack, navigate } = useNavigation();
+  const { goBack, reset } = useNavigation();
 
   useEffect(() => {
     api.get('/providers').then((response) => {
@@ -138,7 +140,12 @@ const CreateAppointment: React.FC = () => {
           date,
         });
 
-        navigate('AppointmentCreated', { date: date.getTime() });
+        reset({
+          routes: [
+            { name: 'AppointmentCreated', params: { date: date.getTime() } },
+          ],
+          index: 0,
+        });
       } catch (err) {
         Alert.alert(
           'Erro ao criar agendamento',
@@ -146,7 +153,13 @@ const CreateAppointment: React.FC = () => {
         );
       }
     }
-  }, [navigate, selectedDate, selectedHour, selectedProvider]);
+  }, [reset, selectedDate, selectedHour, selectedProvider]);
+
+  const selectedDateFormatted = useMemo(() => {
+    return format(selectedDate, "EEEE', dia' dd 'de' MMMM 'de' yyyy", {
+      locale: ptBR,
+    });
+  }, [selectedDate]);
 
   const morningAvailability = useMemo(() => {
     return availability
@@ -206,7 +219,9 @@ const CreateAppointment: React.FC = () => {
         </ProvidersListContainer>
 
         <Calendar>
-          <Title>Escolha a data</Title>
+          <Title>Escolha uma data</Title>
+
+          <SelectedDateFormatted>{selectedDateFormatted}</SelectedDateFormatted>
 
           <OpenDatePickerButton onPress={handleToggleDatePicker}>
             <OpenDatePickerButtonText>Selecionar data</OpenDatePickerButtonText>
@@ -267,13 +282,13 @@ const CreateAppointment: React.FC = () => {
             </SectionContent>
           </Section>
         </Schedule>
-
-        <CreateAppointmentButton onPress={handleCreateAppointment}>
-          <CreateAppointmentButtonText>
-            Fazer agendamento
-          </CreateAppointmentButtonText>
-        </CreateAppointmentButton>
       </Content>
+
+      <CreateAppointmentButton onPress={handleCreateAppointment}>
+        <CreateAppointmentButtonText>
+          Finalizar agendamento
+        </CreateAppointmentButtonText>
+      </CreateAppointmentButton>
     </Container>
   );
 };

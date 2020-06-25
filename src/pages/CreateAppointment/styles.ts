@@ -23,7 +23,9 @@ interface HourTextprops {
   selected: boolean;
 }
 
-export const Container = styled.View``;
+export const Container = styled.View`
+  flex: 1;
+`;
 
 export const Header = styled.View`
   padding: 24px;
@@ -87,7 +89,13 @@ export const Title = styled.Text`
   font-family: 'RobotoSlab-Medium';
   color: ${colors.color5};
   font-size: 24px;
+  margin: 0 24px 8px;
+`;
+
+export const SelectedDateFormatted = styled.Text`
   margin: 0 24px 24px;
+  font-family: 'RobotoSlab-Regular';
+  color: ${colors.color4};
 `;
 
 export const OpenDatePickerButton = styled(RectButton)`
@@ -141,12 +149,16 @@ export const HourText = styled.Text<HourTextprops>`
 `;
 
 export const CreateAppointmentButton = styled(RectButton)`
-  height: 62px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
   background: ${colors.color1};
-  border-radius: 10px;
-  align-items: center;
+  padding: 24px 0;
+
   justify-content: center;
-  margin: 0 24px 24px;
+  align-items: center;
+  flex-direction: row;
 `;
 
 export const CreateAppointmentButtonText = styled.Text`

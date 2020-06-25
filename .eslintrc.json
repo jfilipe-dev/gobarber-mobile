@@ -28,6 +28,7 @@
     "prettier"
   ],
   "rules": {
+    "import/no-duplicates": "off",
     "@typescript-eslint/camelcase": "off",
     "no-unused-expressions": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
