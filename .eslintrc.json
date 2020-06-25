@@ -28,6 +28,7 @@
     "prettier"
   ],
   "rules": {
+    "@typescript-eslint/camelcase": "off",
     "no-unused-expressions": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
     "react/prop-types": "off",
