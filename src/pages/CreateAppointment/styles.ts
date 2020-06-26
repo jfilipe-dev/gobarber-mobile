@@ -44,11 +44,14 @@ export const HeaderTitle = styled.Text`
   margin-left: 16px;
 `;
 
+export const ProfileButton = styled.TouchableOpacity`
+  margin-left: auto;
+`;
+
 export const UserAvatar = styled.Image`
   width: 56px;
   height: 56px;
   border-radius: 28px;
-  margin-left: auto;
 `;
 
 export const Content = styled.ScrollView``;

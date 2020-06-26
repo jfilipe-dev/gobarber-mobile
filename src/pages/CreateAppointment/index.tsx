@@ -15,6 +15,7 @@ import {
   Header,
   BackButton,
   HeaderTitle,
+  ProfileButton,
   UserAvatar,
   Content,
   ProvidersListContainer,
@@ -70,7 +71,7 @@ const CreateAppointment: React.FC = () => {
 
   // All hooks
   const { user } = useAuth();
-  const { goBack, reset } = useNavigation();
+  const { goBack, reset, navigate } = useNavigation();
 
   useEffect(() => {
     api.get('/providers').then((response) => {
@@ -96,6 +97,10 @@ const CreateAppointment: React.FC = () => {
   const navigateBack = useCallback(() => {
     goBack();
   }, [goBack]);
+
+  const navigateToProfile = useCallback(() => {
+    navigate('Profile');
+  }, [navigate]);
 
   const handleSelectedProvider = useCallback((providerId: string) => {
     setSelectedProvider(providerId);
@@ -194,7 +199,9 @@ const CreateAppointment: React.FC = () => {
 
         <HeaderTitle>Cabeleireiros</HeaderTitle>
 
-        <UserAvatar source={{ uri: user.avatar_url }} />
+        <ProfileButton onPress={navigateToProfile}>
+          <UserAvatar source={{ uri: user.avatar_url }} />
+        </ProfileButton>
       </Header>
 
       <Content>
