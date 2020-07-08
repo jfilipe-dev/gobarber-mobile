@@ -200,7 +200,13 @@ const CreateAppointment: React.FC = () => {
         <HeaderTitle>Cabeleireiros</HeaderTitle>
 
         <ProfileButton onPress={navigateToProfile}>
-          <UserAvatar source={{ uri: user.avatar_url }} />
+          <UserAvatar
+            source={{
+              uri:
+                user.avatar_url ||
+                'https://api.adorable.io/avatars/285/abott@adorable.png',
+            }}
+          />
         </ProfileButton>
       </Header>
 
@@ -216,7 +222,13 @@ const CreateAppointment: React.FC = () => {
                 onPress={() => handleSelectedProvider(provider.id)}
                 selected={provider.id === selectedProvider}
               >
-                <ProviderAvatar source={{ uri: provider.avatar_url }} />
+                <ProviderAvatar
+                  source={{
+                    uri:
+                      provider.avatar_url ||
+                      'https://api.adorable.io/avatars/285/abott@adorable.png',
+                  }}
+                />
                 <ProviderName selected={provider.id === selectedProvider}>
                   {provider.name}
                 </ProviderName>

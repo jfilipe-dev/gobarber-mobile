@@ -244,7 +244,13 @@ const SignUp: React.FC = () => {
           <ScrollView>
             <Content>
               <UserAvatarButton onPress={handleUpdateAvatar}>
-                <UserAvatar source={{ uri: user.avatar_url }} />
+                <UserAvatar
+                  source={{
+                    uri:
+                      user.avatar_url ||
+                      'https://api.adorable.io/avatars/285/abott@adorable.png',
+                  }}
+                />
               </UserAvatarButton>
 
               <View>

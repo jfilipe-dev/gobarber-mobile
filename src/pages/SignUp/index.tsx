@@ -103,7 +103,7 @@ const SignUp: React.FC = () => {
         <ScrollView>
           <Container>
             <ContentImg>
-              <Image source={logoImg} />
+              <Image style={{ width: 200, height: 50 }} source={logoImg} />
             </ContentImg>
 
             <ContentForm>
