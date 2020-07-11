@@ -1,6 +1,8 @@
 # GoBarber
 #### A mobile application for make appointments in a barber shop.
 
+<a href="https://github.com/jfilipe-dev/gobarber-web">Check GoBarber web</a>
+
 ### 📺 Preview
 <img src="https://github.com/jfilipe-dev/previews/blob/master/InShot_20200707_222110757.gif?raw=true" width="280">
 
