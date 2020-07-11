@@ -33,7 +33,7 @@
 2. Install the dependencies - 
 `yarn`
 
-4. Install and configure backend
+3. Install and configure backend
 <a href="https://github.com/jfilipe-dev/gobarber-backend">GoBarber backend</a>
 
 4. Run aplication (emulator)
